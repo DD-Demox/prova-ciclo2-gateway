@@ -27,7 +27,7 @@ pipeline {
                     // Parar e remover o container existente, se houver
                     // bat "docker stop ${appName} || true"
                     // bat "docker rm ${appName} || true"
-                    bat docker ps -q --filter "name=${appName}" | grep -q . && docker stop ${appName} && docker rm -fv ${appName}
+                    bat "docker ps -q --filter 'name=${appName}' | grep -q . && docker stop ${appName} && docker rm -fv ${appName}"
                     // Executar o novo container
                     bat "docker run -d --name ${appName} -p 3000:3000 ${imageTag}"
                 }
