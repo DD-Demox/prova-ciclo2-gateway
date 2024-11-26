@@ -25,9 +25,9 @@ pipeline {
                     def appName = 'armando-asch-ciclo2-gateway'
                     def imageTag = "${appName}:${env.BUILD_ID}"
                     // Parar e remover o container existente, se houver
-                    // bat "docker stop ${appName} || true"
-                    // bat "docker rm ${appName} || true"
-                    bat "docker ps -q --filter 'name=${appName}' | grep -q . && docker stop ${appName} && docker rm -fv ${appName}"
+                    bat "docker stop ${appName}"
+                    bat "docker rm ${appName}"
+                    
                     // Executar o novo container
                     bat "docker run -d --name ${appName} -p 3000:3000 ${imageTag}"
                 }
